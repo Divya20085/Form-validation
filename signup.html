@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="sign.css">
+
+</head>
+
+<body>
+    <div class="ahal">
+        <div class="ahal1">
+            <img src="/si-img.png" alt="my image" class="ahal2">
+        </div>
+        <div class="one">
+            <h3>Registration Form</h3>
+            <form id="registrationForm" onsubmit="return validateForm()">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter Your Name" name="name" onkeydown="return /[a-zA-Z]/i.test(event.key)"><br><br>
+                
+                <label for="rollnumber">Roll Number:</label>
+                <input type="text" placeholder="Enter Your Rollnumber" id="rollnumber" name="rollnumber" maxlength="8"><br><br>
+                
+                <label for="dateofbirth">DOB:</label>
+                <input type="date" id="dateofbirth" name="dateofbirth" required><br><br>
+                
+                <label>Year:</label><br>
+                <div class="lab1">
+                    <input type="radio" id="year1" name="year" value="1" required>
+                    <label for="year1">I</label><br>
+                    <input type="radio" id="year2" name="year" value="2" required>
+                    <label for="year2">II</label><br>
+                    <input type="radio" id="year3" name="year" value="3" required>
+                    <label for="year3">III</label>
+                    <input type="radio" id="year4" name="year" value="4" required>
+                    <label for="year4">IV</label>
+                    <input type="radio" id="year5" name="year" value="5" required>
+                    <label for="year5">V</label>
+                </div>
+                <br><br>
+                <label for="department">Department:</label>
+                
+        <select id="department" name="department" placeholder="Choose Your Department">
+            <option value="empty"></option>
+            <option value="cse">CSE</option>
+            <option value="it">IT</option>
+            <option value="csd">CSD</option>
+            <option value="aiml">AIML</option>
+            <option value="aids">AIDS</option>
+            <option value="ece">ECE</option>
+            <option value="eie">EIE</option>
+            <option value="eee">EEE</option>
+        </select>
+
+                <br><br>
+                <label for="email">Email:</label>
+                <input type="email" placeholder="Enter Your Mail ID" id="email" name="email" required>
+                <br><br>
+                <label for="phone">Mobile No:</label>
+                <input type="tel" id="phone" placeholder="Enter Your Phone Number" name="phone" maxlength="10" required><br><br>
+                
+                <button type="submit" style="background-color: rgb(221, 221, 47); width:150px; height: 40px; border-radius: 20px; border: none;">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var rollnumber = document.getElementById("rollnumber").value;
+            var dateofbirth = document.getElementById("dateofbirth").value;
+            var year = document.querySelector('input[name="year"]:checked');
+            var department = document.getElementById("department").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+
+            var nameRegex = /^[a-zA-Z\s]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var phoneRegex = /^\d{10}$/;
+
+            if (
+                name == "" ||
+                !nameRegex.test(name) || 
+                rollnumber.trim() === "" ||
+                year === null ||
+                department == "" || department == "empty" || 
+                email.trim() === "" ||
+                !emailRegex.test(email) ||
+                phone.trim() === "" ||
+                !phoneRegex.test(phone)
+            ) {
+                alert("Please fill in all fields correctly.");
+                return false;
+            } else {
+                alert("Successfully registered");
+                return true;
+            }
+        }
+    </script>
+</body>
+
+</html>
